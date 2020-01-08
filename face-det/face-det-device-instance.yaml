@@ -1,0 +1,24 @@
+apiVersion: devices.kubeedge.io/v1alpha1
+kind: Device
+metadata:
+  name: face-det-01
+  labels:
+    description: FaceDetector
+    model: face-det
+spec:
+  deviceModelRef:
+    name: face-det
+  nodeSelector:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: ''
+        operator: In
+        values:
+        - pi-node-4          #pls give your edge node name
+status:
+  twins:
+    - propertyName: payload
+      desired:
+        metadata:
+          type: string
+        value: '{}'

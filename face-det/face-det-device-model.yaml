@@ -1,0 +1,13 @@
+apiVersion: devices.kubeedge.io/v1alpha1
+kind: DeviceModel
+metadata:
+ name: face-det
+ namespace: default
+spec:
+ properties:
+  - name: payload
+    description: Data payload
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: '{}'
