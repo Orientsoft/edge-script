@@ -10,4 +10,4 @@ spec:
     type:
       string:
         accessMode: ReadWrite
-        defaultValue: '{}'
+        defaultValue: 'e30K'

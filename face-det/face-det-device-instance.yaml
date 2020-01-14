@@ -21,4 +21,4 @@ status:
       desired:
         metadata:
           type: string
-        value: '{}'
+        value: 'e30K'
