@@ -43,7 +43,7 @@ def start_writer(q):
 
                     event['object']['status']['twins'][0]['desired']['value'] = json.loads(decoded_value)
                 if 'reported' in event['object']['status']['twins'][0].keys():
-                    reported_value = event['object']['status']['twins'][0]['desired']['value']
+                    reported_value = event['object']['status']['twins'][0]['reported']['value']
                     decoded_value = str(base64.b64decode(reported_value.encode('utf-8')), 'utf-8')
 
                     event['object']['status']['twins'][0]['reported']['value'] = json.loads(decoded_value)
