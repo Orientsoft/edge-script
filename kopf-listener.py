@@ -1,3 +1,4 @@
+import os
 import json
 import yaml
 import multiprocessing as mp
@@ -19,9 +20,11 @@ reconnect_interval = 5.
 # configs
 with open(config_path, 'r') as config_file:
     config = yaml.load(config_file)
-    
-    nsq_url = config['nsq_url']
+
     topic = config['topic']
+
+# configs
+nsq_url = os.environ['NSQ_URL']
 
 # global vars
 q = mp.Queue()

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: kopf-listener
+spec:
+    replicas: 1
+    strategy:
+        type: Recreate
+    selector:
+        matchLabels:
+            application: kopf-listener
+    template:
+        metadata:
+            labels:
+                application: kopf-listener
+        spec:
+            serviceAccountName: edge
+            nodeSelector:
+                type: cloud
+            containers:
+                - name: kopf-listener
+                  image: registry.mooplab.com:8443/kubeedge/kopf_listener:20200203
+                  env:
+                      - name: NSQ_URL
+                        value: "queue-nsq-nsqd.nsq.svc:4150"
