@@ -38,7 +38,6 @@ def start_writer(q):
         try:
             while True:
                 event = q.get(block=False) # will raise Queue.Empty exception
-
                 event_json = {}
 
                 # parse payload
@@ -52,13 +51,13 @@ def start_writer(q):
                     reported_value = event['object']['status']['twins'][0]['reported']['value']
                     decoded_value = str(base64.b64decode(reported_value.encode('utf-8')), 'utf-8')
                     event_json['reported'] = json.loads(decoded_value)
-
+                    
                     # event['object']['status']['twins'][0]['reported']['value'] = json.loads(decoded_value)
 
-                event_json['ts'] = event['object']['metadata']['creationTimestamp']
+                event_json['resourceVersion'] = event['object']['metadata']['resourceVersion']
                 event_json['device'] = event['object']['metadata']['name']
                 event_json['node'] = event['object']['spec']['nodeSelector']['nodeSelectorTerms'][0]['matchExpressions'][0]['values'][0]
-
+                
                 writer.pub(topic, json.dumps(event_json).encode())
         except mp.queues.Empty:
             pass
