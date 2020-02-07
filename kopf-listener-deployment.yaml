@@ -19,7 +19,8 @@ spec:
                 type: cloud
             containers:
                 - name: kopf-listener
-                  image: registry.mooplab.com:8443/kubeedge/kopf_listener:20200205
+                  image: registry.mooplab.com:8443/kubeedge/kopf_listener:20200207
+                  imagePullPolicy: Always
                   env:
                       - name: NSQ_URL
                         value: "queue-nsq-nsqd.nsq.svc:4150"
